@@ -8,11 +8,10 @@ int poblar_red(int* red, int numero_filas, int numero_columnas, float probabilid
 int main(){
     int numero_filas;
     int numero_columnas;
-    int tamanio_red;
     numero_filas = 10;
     numero_columnas = 10;
     int *red;
-    red = malloc((numero_filas*numero_columnas)*sizeof(int));
+    red = (int *)malloc((numero_filas*numero_columnas)*sizeof(int));
     float probabilidad;
     probabilidad = 0.5;
 

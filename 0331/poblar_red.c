@@ -3,38 +3,43 @@
 #include <stdlib.h>
 #include <time.h>
 
-int poblar_red(int* red, int numero_filas, int numero_columnas, float probabilidad);
+void llenar(int* red, int n, int m, float proba);
+void imprimir(int *red, int m, int n);
 
 int main(){
-    int numero_filas;
-    int numero_columnas;
-    numero_filas = 10;
-    numero_columnas = 10;
+    int n;
+    int m;
+    n = 10;
+    m = 10;
     int *red;
-    red = (int *)malloc((numero_filas*numero_columnas)*sizeof(int));
-    float probabilidad;
-    probabilidad = 0.5;
+    red = (int *)malloc((n*m)*sizeof(int));
+    float proba;
+    proba = 0.5;
 
-    poblar_red(red, numero_filas, numero_columnas, probabilidad) ;
+    llenar(red, n, m, proba) ;
+    imprimir(red, n, m);
+    free(red);
+}
+
+void imprimir(int *red, int m, int n){
     int i;
-    for(i=0;i<(numero_columnas*numero_filas);i++) {
-        if((i%numero_columnas)==0) {
+    for(i=0;i<(m*n);i++) {
+        if((i%m)==0) {
             printf("\n");
         }
         else {
             printf(" %i ", red[i]);
         }
     }
-    free(red);
-}
 
-int poblar_red(int* red, int numero_filas, int numero_columnas, float probabilidad) {
+}
+void llenar(int* red, int n, int m, float proba) {
     srand(time(NULL));  
     float valor_aleatorio;
     int i;
-    for(i=0; i<(numero_columnas*numero_filas); i++){
+    for(i=0; i<(m*n); i++){
         valor_aleatorio = rand()%RAND_MAX;
-        if (valor_aleatorio < (probabilidad*RAND_MAX)){
+        if (valor_aleatorio < (proba*RAND_MAX)){
             red[i] = 1;
 
         }
@@ -42,6 +47,5 @@ int poblar_red(int* red, int numero_filas, int numero_columnas, float probabilid
             red[i] = 0;
         }
     }
-    return 0;
 
 }
